@@ -14,7 +14,7 @@ interface PatientDashboardViewModel {
   labResults: LabResult[];
   selectedBiomarker: BiomarkerId;
   disclaimerText: string;
-  trendData: Array<{ label: string; value: number }>;
+  trendData: { label: string; value: number }[];
   setSelectedBiomarker: (biomarkerId: BiomarkerId) => void;
   reload: () => Promise<void>;
 }
@@ -29,7 +29,7 @@ export function usePatientDashboardViewModel(): PatientDashboardViewModel {
   const [selectedBiomarker, setSelectedBiomarker] =
     useState<BiomarkerId>(defaultBiomarker);
   const [trendPoints, setTrendPoints] = useState<
-    Array<{ biomarkerId: BiomarkerId; measuredAtIso: string; value: number }>
+    { biomarkerId: BiomarkerId; measuredAtIso: string; value: number }[]
   >([]);
 
   const reload = useCallback(async () => {

@@ -5,11 +5,11 @@ import { type BiomarkerId } from "@/src/features/patient-dashboard/models/patien
 
 interface TrendChartProps {
   selectedBiomarker: BiomarkerId;
-  trendData: Array<{ label: string; value: number }>;
+  trendData: { label: string; value: number }[];
   onSelectBiomarker: (biomarkerId: BiomarkerId) => void;
 }
 
-const biomarkers: Array<{ id: BiomarkerId; label: string }> = [
+const biomarkers: { id: BiomarkerId; label: string }[] = [
   { id: "hba1c", label: "HbA1c" },
   { id: "ldl", label: "LDL" },
   { id: "hdl", label: "HDL" },
