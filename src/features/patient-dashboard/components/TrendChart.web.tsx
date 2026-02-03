@@ -1,13 +1,17 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  CartesianGrid,
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 import { Card } from "@/src/design-system/components/Card";
+import { type TrendChartProps } from "@/src/features/patient-dashboard/components/TrendChart.types";
 import { type BiomarkerId } from "@/src/features/patient-dashboard/models/patientDashboard.types";
-
-interface TrendChartProps {
-  selectedBiomarker: BiomarkerId;
-  trendData: { label: string; value: number }[];
-  onSelectBiomarker: (biomarkerId: BiomarkerId) => void;
-}
 
 const biomarkers: { id: BiomarkerId; label: string }[] = [
   { id: "hba1c", label: "HbA1c" },
@@ -20,8 +24,6 @@ export function TrendChart({
   trendData,
   onSelectBiomarker,
 }: TrendChartProps) {
-  const max = Math.max(...trendData.map((point) => point.value), 1);
-
   return (
     <Card>
       <Text style={styles.title}>Biomarker Trend</Text>
@@ -46,18 +48,23 @@ export function TrendChart({
         })}
       </View>
 
-      <View style={styles.chartRow}>
-        {trendData.map((point) => {
-          const height = Math.max(12, (point.value / max) * 100);
-
-          return (
-            <View key={`${point.label}-${point.value}`} style={styles.barGroup}>
-              <View style={[styles.bar, { height }]} />
-              <Text style={styles.barValue}>{point.value}</Text>
-              <Text style={styles.barLabel}>{point.label}</Text>
-            </View>
-          );
-        })}
+      <View style={styles.chartContainer}>
+        <ResponsiveContainer width="100%" height={220}>
+          <LineChart data={trendData} margin={{ top: 8, right: 12, left: 0, bottom: 8 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#cbd5e1" />
+            <XAxis dataKey="label" stroke="#475569" fontSize={12} />
+            <YAxis stroke="#475569" fontSize={12} width={35} />
+            <Tooltip />
+            <Line
+              type="monotone"
+              dataKey="value"
+              stroke="#0f766e"
+              strokeWidth={3}
+              dot={{ r: 4, fill: "#0f766e" }}
+              activeDot={{ r: 6 }}
+            />
+          </LineChart>
+        </ResponsiveContainer>
       </View>
     </Card>
   );
@@ -92,31 +99,8 @@ const styles = StyleSheet.create({
   filterTextActive: {
     color: "#ffffff",
   },
-  chartRow: {
-    flexDirection: "row",
-    alignItems: "flex-end",
-    justifyContent: "space-between",
-    minHeight: 130,
-    gap: 12,
-  },
-  barGroup: {
-    flex: 1,
-    alignItems: "center",
-    gap: 2,
-  },
-  bar: {
+  chartContainer: {
     width: "100%",
-    maxWidth: 28,
-    borderRadius: 6,
-    backgroundColor: "#14b8a6",
-  },
-  barValue: {
-    fontSize: 12,
-    fontWeight: "700",
-    color: "#134e4a",
-  },
-  barLabel: {
-    fontSize: 11,
-    color: "#475569",
+    height: 220,
   },
 });
