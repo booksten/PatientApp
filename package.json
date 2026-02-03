@@ -8,6 +8,7 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
+    "start:storybook": "EXPO_PUBLIC_STORYBOOK_ENABLED=true expo start -c",
     "lint": "expo lint",
     "test": "jest",
     "storybook-generate": "sb-rn-get-stories"

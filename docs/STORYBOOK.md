@@ -10,8 +10,10 @@ These stories demonstrate the three reusable dashboard components required by th
 
 ## Run
 
-1. Start the app: `npm run start`
+1. Start Storybook-enabled metro: `npm run start:storybook`
 2. In the app, tap **Open Storybook** on the dashboard screen (route: `/storybook`).
+
+If you run plain `npm run start`, Storybook metro enhancements are disabled by default.
 
 If you add or move stories, regenerate Storybook requires file:
 

@@ -3,13 +3,17 @@ import { Link } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
+  const storybookEnabled = process.env.EXPO_PUBLIC_STORYBOOK_ENABLED === "true";
+
   return (
     <View style={styles.container}>
-      <View style={styles.storybookLinkWrap}>
-        <Link href="/storybook" style={styles.storybookLink}>
-          <Text>Open Storybook</Text>
-        </Link>
-      </View>
+      {storybookEnabled ? (
+        <View style={styles.storybookLinkWrap}>
+          <Link href="/storybook" style={styles.storybookLink}>
+            <Text>Open Storybook</Text>
+          </Link>
+        </View>
+      ) : null}
       <PatientDashboardScreen />
     </View>
   );
