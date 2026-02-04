@@ -1,50 +1,59 @@
-# Welcome to your Expo app 👋
+# PatientApp
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native (Expo Router) patient dashboard app built with an MVVM-style feature architecture.
 
-## Get started
+## Usage
 
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+1. Install dependencies:
 
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. Run the app:
 
-## Learn more
+```bash
+npm run start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+3. Useful scripts:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npm run lint
+npm test
+npm run start:storybook
+npm run storybook-generate
+```
 
-## Join the community
+- `start:storybook` enables Storybook metro integration (`EXPO_PUBLIC_STORYBOOK_ENABLED=true`).
 
-Join our community of developers creating universal apps.
+## Architecture (MVVM)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+The app is organized by feature and layer:
+
+- **View**: screens and UI components (`src/features/*/screens`, `src/features/*/components`)
+- **ViewModel**: hooks that manage state and UI actions (`src/features/*/viewmodels`)
+- **Model/Data**: typed models, repositories, and services (`src/features/*/models|data|services`)
+
+### Current feature
+
+`src/features/patient-dashboard` includes:
+
+- patient summary
+- lab results cards
+- biomarker trend chart
+- disclaimer banner for AI-generated insights context
+
+### Key folders
+
+- `app/` — Expo Router routes
+- `src/design-system/` — reusable UI primitives/components
+- `src/features/` — feature modules (MVVM)
+- `storybook/stories/` — reusable component stories
+- `docs/` — architecture and component usage notes
+
+## Notes
+
+- Trend chart is platform-aware:
+  - Web uses Recharts
+  - Native uses a fallback native chart component
