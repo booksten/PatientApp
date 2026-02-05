@@ -1,6 +1,7 @@
 import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from "react-native";
 
 import { DisclaimerBanner } from "@/src/design-system/components/DisclaimerBanner";
+import { BloodSugarHistoryChart } from "@/src/features/patient-dashboard/components/BloodSugarHistoryChart";
 import { LabResultCard } from "@/src/features/patient-dashboard/components/LabResultCard";
 import { PatientSummaryCard } from "@/src/features/patient-dashboard/components/PatientSummaryCard";
 import { TrendChart } from "@/src/features/patient-dashboard/components/TrendChart";
@@ -39,6 +40,8 @@ export function PatientDashboardScreen() {
         trendData={viewModel.trendData}
         onSelectBiomarker={viewModel.setSelectedBiomarker}
       />
+
+      <BloodSugarHistoryChart data={viewModel.bloodSugarHistoryData} />
 
       <View style={styles.resultsSection}>
         <Text style={styles.sectionTitle}>Latest Lab Results</Text>
