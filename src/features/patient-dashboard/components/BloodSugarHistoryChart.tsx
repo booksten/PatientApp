@@ -6,6 +6,20 @@ interface BloodSugarHistoryChartProps {
   data: { label: string; value: number }[];
 }
 
+type BloodSugarLevel = "normal" | "warning" | "critical";
+
+function bloodSugarLevel(value: number): BloodSugarLevel {
+  if (value >= 180) return "critical";
+  if (value >= 140) return "warning";
+  return "normal";
+}
+
+const levelColors: Record<BloodSugarLevel, { bar: string; text: string }> = {
+  normal: { bar: "#22c55e", text: "#14532d" },
+  warning: { bar: "#f59e0b", text: "#78350f" },
+  critical: { bar: "#ef4444", text: "#7f1d1d" },
+};
+
 export function BloodSugarHistoryChart({ data }: BloodSugarHistoryChartProps) {
   const maxValue = Math.max(...data.map((item) => item.value), 1);
 
@@ -13,15 +27,22 @@ export function BloodSugarHistoryChart({ data }: BloodSugarHistoryChartProps) {
     <Card>
       <Text style={styles.title}>Historical Blood Sugar Levels</Text>
       <Text style={styles.subtitle}>Estimated average glucose (mg/dL) from HbA1c</Text>
+      <View style={styles.legendRow}>
+        <Text style={styles.legendText}>Normal &lt; 140</Text>
+        <Text style={styles.legendText}>Warning 140-179</Text>
+        <Text style={styles.legendText}>Critical 180+</Text>
+      </View>
 
       <View style={styles.chartRow}>
         {data.map((item) => {
           const height = Math.max(12, (item.value / maxValue) * 100);
+          const level = bloodSugarLevel(item.value);
+          const colors = levelColors[level];
 
           return (
             <View key={`${item.label}-${item.value}`} style={styles.barGroup}>
-              <View style={[styles.bar, { height }]} />
-              <Text style={styles.barValue}>{item.value}</Text>
+              <View style={[styles.bar, { height, backgroundColor: colors.bar }]} />
+              <Text style={[styles.barValue, { color: colors.text }]}>{item.value}</Text>
               <Text style={styles.barLabel}>{item.label}</Text>
             </View>
           );
@@ -41,6 +62,15 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#64748b",
   },
+  legendRow: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 8,
+  },
+  legendText: {
+    fontSize: 11,
+    color: "#475569",
+  },
   chartRow: {
     flexDirection: "row",
     alignItems: "flex-end",
@@ -57,12 +87,10 @@ const styles = StyleSheet.create({
     width: "100%",
     maxWidth: 26,
     borderRadius: 6,
-    backgroundColor: "#ef4444",
   },
   barValue: {
     fontSize: 12,
     fontWeight: "700",
-    color: "#7f1d1d",
   },
   barLabel: {
     fontSize: 11,
