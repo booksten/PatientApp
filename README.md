@@ -4,7 +4,7 @@ A React Native (Expo Router) patient dashboard app built with an MVVM-style feat
 
 ## Information
 
-The app was created with the information provided in documents, I did my best to include graph, the app is also at the created to begin support for iOS and Android
+The app was created with the information provided in documents, I did my best to include all the requirements, the app is also at the created to begin support for iOS and Android devices. The Business rules, where incomplete or not all there, which would normally be provided, and/or discussed with the project manager.
 
 ## Usage
 
