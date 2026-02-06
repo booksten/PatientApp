@@ -39,8 +39,13 @@ yarn-error.*
 app-example
 
 # generated native folders
+<<<<<<< Updated upstream
 #/ios
 #/android
+=======
+# /ios
+# /android
+>>>>>>> Stashed changes
 
 *storybook.log
 storybook-static

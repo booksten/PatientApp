@@ -7,6 +7,7 @@ export interface PatientSummary {
   firstName: string;
   lastName: string;
   age: number;
+  bloodType: string;
   lastUpdatedIso: string;
 }
 

@@ -10,6 +10,7 @@ const patient: PatientSummary = {
   firstName: "Alex",
   lastName: "Miller",
   age: 52,
+  bloodType: "O+",
   lastUpdatedIso: "2026-01-30T16:45:00.000Z",
 };
 
@@ -47,15 +48,34 @@ const labResults: LabResult[] = [
 ];
 
 const trendPoints: BiomarkerTrendPoint[] = [
-  { biomarkerId: "hba1c", measuredAtIso: "2025-07-01T08:00:00.000Z", value: 7.4 },
-  { biomarkerId: "hba1c", measuredAtIso: "2025-10-01T08:00:00.000Z", value: 7.0 },
-  { biomarkerId: "hba1c", measuredAtIso: "2026-01-30T08:00:00.000Z", value: 6.8 },
+  {
+    biomarkerId: "hba1c",
+    measuredAtIso: "2025-07-01T08:00:00.000Z",
+    value: 7.4,
+  },
+  {
+    biomarkerId: "hba1c",
+    measuredAtIso: "2025-10-01T08:00:00.000Z",
+    value: 7.0,
+  },
+  {
+    biomarkerId: "hba1c",
+    measuredAtIso: "2026-01-30T08:00:00.000Z",
+    value: 6.8,
+  },
+  {
+    biomarkerId: "hba1c",
+    measuredAtIso: "2026-02-30T08:00:00.000Z",
+    value: 6.4,
+  },
   { biomarkerId: "ldl", measuredAtIso: "2025-07-01T08:00:00.000Z", value: 130 },
   { biomarkerId: "ldl", measuredAtIso: "2025-10-01T08:00:00.000Z", value: 124 },
   { biomarkerId: "ldl", measuredAtIso: "2026-01-30T08:00:00.000Z", value: 118 },
+  { biomarkerId: "ldl", measuredAtIso: "2026-02-30T08:00:00.000Z", value: 112 },
   { biomarkerId: "hdl", measuredAtIso: "2025-07-01T08:00:00.000Z", value: 50 },
   { biomarkerId: "hdl", measuredAtIso: "2025-10-01T08:00:00.000Z", value: 55 },
   { biomarkerId: "hdl", measuredAtIso: "2026-01-30T08:00:00.000Z", value: 58 },
+  { biomarkerId: "hdl", measuredAtIso: "2026-02-30T08:00:00.000Z", value: 58 },
 ];
 
 export const mockPatientDashboardData: PatientDashboardData = {

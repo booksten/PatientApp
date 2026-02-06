@@ -27,8 +27,10 @@ export function PatientDashboardScreen() {
     );
   }
 
-  return (
+  return (<>
+    <title>Patient Dashboard</title>
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+      
       <Text style={styles.heading}>Patient Dashboard</Text>
 
       <DisclaimerBanner text={viewModel.disclaimerText} />
@@ -50,6 +52,7 @@ export function PatientDashboardScreen() {
         ))}
       </View>
     </ScrollView>
+    </>
   );
 }
 

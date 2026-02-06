@@ -13,6 +13,7 @@ export const Default = {
         firstName: "Alex",
         lastName: "Miller",
         age: 52,
+        bloodType: "O+",
         lastUpdatedIso: "2026-01-30T16:45:00.000Z",
       }}
     />
